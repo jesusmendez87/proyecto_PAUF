@@ -1,9 +1,10 @@
+import { IF_EXISTS } from './../../../../node_modules/lmdb/index.d';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 export interface User {
-  _id?: string;
+  _id: string;
   username: string;
   name?: string;
   rol?: string;
@@ -47,6 +48,10 @@ export class AuthService {
 
   getCurrentUser(): User | null {
     return this.currentUserSubject.value;
+  }
+
+    getCurrentUserid(): string | null {
+    return this.getCurrentUser()?._id ?? null;
   }
 
   isLoggedIn(): boolean {

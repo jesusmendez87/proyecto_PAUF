@@ -1,1 +1,12 @@
-<p>clasificaciones works!</p>
+<div *ngIf="loading" class="alert alert-info">Cargando datos...</div>
+
+<div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+<div *ngIf="partido && !loading" class="card">
+  <div class="card-body">
+    <h5 class="card-title">Partido</h5>
+    <p><strong>Árbitro:</strong> {{ partido.arbitro_id}}</p>
+    <p><strong>Resultado Local:</strong> {{ partido.local_id }}</p>
+    <p><strong>Visitante ID:</strong> {{ partido.visitante_id }}</p>
+  </div>
+</div>
