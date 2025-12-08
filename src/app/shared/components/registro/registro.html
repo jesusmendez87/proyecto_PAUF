@@ -1,0 +1,30 @@
+<div class="register-container">
+    <h2>Registro</h2>
+    <input type="text" [(ngModel)]="username" placeholder="Usuario" />
+    <input type="text" [(ngModel)]="name" placeholder="Nombre" />   
+    <input type="password" [(ngModel)]="password" placeholder="Contraseña" />
+    <input type="password" [(ngModel)]="confirmPassword" placeholder="Contraseña" />    
+ 
+<label for="rol">Tipo de usuario:</label>
+<select id="rol" [(ngModel)]="rol" class="form-select">
+  <option value="" disabled selected>Seleccione un rol</option>
+  <option value="jugador">Jugador</option>
+  <option value="arbitro">Arbitro</option>
+</select>
+
+ 
+
+    <div class="messages">
+        <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+        <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+    </div>
+
+    <button (click)="register()" [disabled]="loading || !username || !password || !confirmPassword || !rol">
+        <span *ngIf="!loading">Registrarse</span>                   
+
+        <span *ngIf="loading">Registrando...</span>
+    </button>
+   <br>
+    <a routerLink="/login">¿Ya tienes una cuenta? Inicia sesión</a>
+    
+</div>  
