@@ -4,9 +4,15 @@
                     <div class="list-group pt-5">
                         <a href="#" class="list-group-item list-group-item-action active fs-5 fs-sm-6 bg-dark"
                             aria-current="true"> Noticias</a>
-                        <a href="#competiciones"
-                            class="list-group-item list-group-item-action fs-5 fs-sm-6">Competiciones</a>
-                        <a href="#" class="list-group-item list-group-item-action fs-5 fs-sm-6">Inscripciones</a>
+                <a class="list-group-item list-group-item-action fs-5 fs-sm-6"
+   *hasRole="'admin'"
+   routerLink="/competiciones">
+   Competiciones
+</a>
+
+
+                   <a href="#" class="list-group-item list-group-item-action fs-5 fs-sm-6">Inscripciones</a>
+
                         <a href="#"
                             class="list-group-item list-group-item-action dropdown-toggle fs-5 fs-sm-6 text-wrap"
                             data-bs-toggle="dropdown">Resultado años anteriores</a>
@@ -19,7 +25,7 @@
                             <li><a class="dropdown-item fs-5 fs-sm-6" href="#">2023/22</a></li>
                         </ul>
 
-                    </div>
+                    </div> 
 
 
                 </aside>

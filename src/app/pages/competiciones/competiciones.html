@@ -1,0 +1,80 @@
+<div class="register-container">
+    <h2>Registro</h2>
+    <input type="text" [(ngModel)]="lugar" placeholder="Lugar" />
+    <input type="datetime-local" [(ngModel)]="fecha" placeholder="fecha" />   
+    <input type="text" [(ngModel)]="deporte" placeholder="Deporte" />
+    
+ 
+ 
+<label for="equipo1">Equipo Local:</label>
+<select 
+  [(ngModel)]="local_id" 
+  (change)="cargarEquipos()"
+  id="equipo1" 
+  class="form-select"
+>
+  <option value="" disabled selected>-- Elige un Equipo --</option>
+  
+  <!-- Iteramos sobre 'productos' -->
+  <option 
+    *ngFor="let nameEquipo of equipo" 
+    [value]="nameEquipo._id"
+  >
+    <!-- Mostramos el campo 'nombre' como texto visible -->
+    {{ nameEquipo.name }} 
+  </option>
+</select>
+
+<label for="equipo2">Equipo Visitante:</label>
+<select 
+  [(ngModel)]="visitante_id" 
+  (change)="cargarEquipos()"
+  id="equipo2" 
+  class="form-select"
+>
+  <option value="" disabled selected>-- Elige un Equipo --</option>
+  
+  <!-- Iteramos sobre 'productos' -->
+  <option 
+    *ngFor="let nameEquipo of equipo" 
+    [value]="nameEquipo._id"
+  >
+    <!-- Mostramos el campo 'nombre' como texto visible -->
+    {{ nameEquipo.name }} 
+  </option>
+</select>
+
+<label for="arbitro_id">Arbitro</label>
+<select 
+  [(ngModel)]="arbitro_id" 
+  (change)="cargarArbitros()"
+  id="arbitro_id" 
+  class="form-select"
+>
+  <option value="" disabled selected>-- Elige un Arbitro --</option>
+  
+  <!-- Iteramos sobre 'productos' -->
+  <option 
+    *ngFor="let arbitroid of arbitros  " 
+    [value]="arbitroid._id" >
+    <!-- Mostramos el campo 'nombre' como texto visible -->
+    {{ arbitroid.name }} 
+  </option>
+</select>
+
+
+ 
+
+    <div class="messages">
+        <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+        <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+    </div>
+
+    <button (click)="nuevoPartido()" [disabled]="loading || !visitante_id || !local_id || !arbitro_id || !lugar || !fecha || !deporte">
+        <span *ngIf="!loading">Registrarse</span>                   
+
+        <span *ngIf="loading">Registrando...</span>
+    </button>
+ 
+    
+</div>  

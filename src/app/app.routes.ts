@@ -10,6 +10,7 @@ import { LoginComponent } from './shared/components/login/login';
 import { Registro } from './shared/components/registro/registro';
 import { RoleGuard } from './shared/directives';
 import { App } from './app';
+import { Competiciones } from './pages/competiciones/competiciones';
 
 
 export const routes: Routes = [
@@ -21,6 +22,8 @@ export const routes: Routes = [
   { path: 'clasificaciones', component: Clasificaciones, canActivate: [RoleGuard], data: { roles: ['admin', 'jugador', 'arbitro'] } },
   { path: 'noticias', component: Noticias, canActivate: [RoleGuard], data: { roles: ['admin', 'jugador', 'arbitro'] } },
   { path: 'contacto', component: Contacto, canActivate: [RoleGuard], data: { roles: ['admin', 'jugador', 'arbitro'] } },
+  { path: 'competiciones', component: Competiciones, canActivate: [RoleGuard], data: { roles: ['admin'] } },
   { path: 'registro', component: Registro },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' }, 
+
 ];

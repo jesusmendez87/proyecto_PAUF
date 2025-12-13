@@ -8,6 +8,7 @@ import { Observable, BehaviorSubject, map } from 'rxjs';
 export interface partido {
  
   arbitro_id: string;
+  deporte: string;
   local_id: string;
   visitante_id: string;
 }

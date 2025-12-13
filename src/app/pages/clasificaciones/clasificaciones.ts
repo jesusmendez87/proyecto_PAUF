@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/services/auth';
 import { VerPartido } from '../../core/services/verPartido';
-import { User } from '../../core/models/user.model';
+
 import { LoginComponent } from '../../shared/components/login/login';
 
 
@@ -30,8 +30,12 @@ export class Clasificaciones implements OnInit {
     console.log('Iniciando carga de partidos...');
   // mostrar clasificaciones
 
-  if(this.authService.getCurrentUserid()== this.partido?.arbitro_id 
- || this.authService.hasRole("admin")){
+  const stringId =  this.partido?.arbitro_id.toString();
+  
+  if(
+  (stringId && this.authService.getCurrentUserid() === stringId) ||
+  this.authService.hasRole("admin")
+) {
 
 
   

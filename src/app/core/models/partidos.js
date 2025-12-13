@@ -2,12 +2,12 @@ import mongoose from 'mongoose';
 
 
 const actaSchema = new mongoose.Schema({
-    jugador: { type:String, required: true },   
-    minuto: { type: Number, required: true },
+    jugador: { type:String},   
+    minuto: { type: Number },
     tipo: { 
         type: String, 
         enum: ['gol', 'amarilla', 'roja', 'sustitucion'], 
-        required: true 
+        
     }
 });
 
@@ -29,17 +29,14 @@ const partidoSchema = new mongoose.Schema({
     required: true },
    
   resultado: {
-        local_score: { type: Number, required: true },
-        visitante_score: { type: Number, required: true }, 
+        local_score: { type: Number },
+        visitante_score: { type: Number}, 
         },
 
   acta: [actaSchema],
    
-  fecha: { type: Date, required: true },
-  lugar: { type: String, required: true }
+  fecha: { type: Date},
+  lugar: { type: String }
 });
 
-export default mongoose.model('Partido', partidoSchema, 'partidos');
-
- 
-
+export default mongoose.model('Partido', partidoSchema);

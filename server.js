@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import Usuario from "./src/app/core/models/user.js";
 import Partido from "./src/app/core/models/partidos.js";
-import Equipo from "./src/app/core/models/equipo.js";   
+import Equipo from "./src/app/core/models/equipos.js";   
 
 dotenv.config();
 const app = express();
@@ -60,39 +60,94 @@ app.post("/api/register", async (req, res) => {
     console.error("Error al registrar usuario:", error);
     res.status(500).json({ message: "Error interno del servidor" });
   }
+ 
 });
 
-
-
-// Ruta para obtener todos los partidos
+//ver partidos
 app.get("/api/partidos", async (req, res) => {
   try {
-    const partidos = await Partido.find()
-       
-      
+    const partidos = await Partido.find();
     res.json(partidos);
   } catch (error) {
-    console.error("Error al obtener partidos:", error);
+    console.error("Error al obtener los partidos:", error);
+    res.status(500).json({ message: "Error interno del servidor" });
+  } 
+});
+// crear un partido
+app.post("/api/partido", async (req, res) => {
+  const { local_id, visitante_id, arbitro_id, lugar, fecha, deporte } = req.body;
+  try {
+    const nuevoPartido = new Partido({
+      local_id,
+      visitante_id,
+      arbitro_id,
+      lugar,
+      fecha,
+      deporte,
+    });
+
+    await nuevoPartido.save();
+
+    res.status(201).json({ message: "Partido creado correctamente", partido: nuevoPartido });
+
+  } catch (error) {
+    console.error("Error al crear el partido:", error);
     res.status(500).json({ message: "Error interno del servidor" });
   }
 });
 
-//ruta para loguear usuario
-app.post("/api/login", async (req, res) => {
-  const { username, password } = req.body;
-
+//ver equipos
+app.get("/api/equipos", async (req, res) => {
   try {
-    const user = await Usuario.findOne({ username, password });   
-  
-    if (!user) {
-      return res.status(401).json({ message: "Credenciales inválidas" });
-    }
+    const equipos = await Equipo.find();
+    res.json(equipos);
   } catch (error) {
-    console.error("Error al buscar usuario:", error);
+    console.error("Error al obtener los equipos:", error);
     res.status(500).json({ message: "Error interno del servidor" });
   } 
-}); 
 
+
+//ver usuarios
+
+app.get("/api/usuarios", async (req, res) => {
+  try {
+    const { rol } = req.query;
+
+    let filtro = {};
+    if (rol) filtro.rol = rol;
+
+    const usuarios = await Usuario
+      .find(filtro)
+      .select("_id name");   // 👈 SOLO devuelve id y name
+
+    res.json(usuarios);
+
+  } catch (error) {
+    console.error("Error listando usuarios:", error);
+    res.status(500).json({ message: "Error del servidor" });
+  }
+});
+app.get("/api/usuarios", async (req, res) => {
+  try {
+    const { rol } = req.query;
+
+    let filtro = {};
+    if (rol) filtro.rol = rol;
+
+    const usuarios = await Usuario
+      .find(filtro)
+      .select("_id name");   // 👈 SOLO devuelve id y name
+
+    res.json(usuarios);
+
+  } catch (error) {
+    console.error("Error listando usuarios:", error);
+    res.status(500).json({ message: "Error del servidor" });
+  }
+});
+
+
+});
 // Puerto
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
