@@ -1,1 +1,16 @@
-<p>contacto works!</p>
+<head>
+<link rel="stylesheet" href="./contacto.css">
+</head>
+
+<form class="container" #f="ngForm" (ngSubmit)="f.valid && enviar($event.target)">
+
+  <input name="name" placeholder="Nombre">
+
+  <input type="email" name="email"  ngModel required  placeholder="Email">
+
+  <textarea name="message" placeholder="Mensaje"></textarea>
+
+  <button type="submit">Enviar</button>
+
+</form>
+

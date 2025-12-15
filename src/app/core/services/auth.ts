@@ -14,37 +14,54 @@ export interface User {
 export class AuthService {
   private apiUrl = 'http://localhost:3000/api/login';
 
-  private currentUserSubject = new BehaviorSubject<User | null>(
-    (() => {
-      try {
-        const raw = localStorage.getItem('currentUser');
-        return raw ? (JSON.parse(raw) as User) : null;
-      } catch {
-        return null;
-      }
-    })()
-  );
+ private currentUserSubject = new BehaviorSubject<User | null>(
+  (() => {
+    try {
+      const userRaw = localStorage.getItem('currentUser');
+      const token = localStorage.getItem('token');
+      if (!userRaw || !token) return null;
+      return JSON.parse(userRaw) as User;
+    } catch {
+      return null;
+    }
+  })()
+);
+
 
   public currentUser$ = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(this.apiUrl, { username, password});
-  }
+login(username: string, password: string): Observable<any> {
+  return new Observable(observer => {
+    this.http.post<{ user: User, token: string }>(this.apiUrl, { username, password })
+      .subscribe({
+        next: (res) => {
+          // Guardamos user y token
+          this.setCurrentUser(res.user, res.token);
 
-  setCurrentUser(user: User | null) {
-    this.currentUserSubject.next(user);
-    try {
-      if (user) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-      } else {
-        localStorage.removeItem('currentUser');
-      }
-    } catch {
-      // ignore localStorage errors
-    }
+          // Actualizamos BehaviorSubject
+          this.currentUserSubject.next(res.user);
+
+          observer.next(res);
+          observer.complete();
+        },
+        error: (err) => observer.error(err)
+      });
+  });
+}
+
+
+setCurrentUser(user: User | null, token?: string) {
+  if (user) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    if (token) localStorage.setItem('token', token);
+  } else {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
   }
+}
+
 
   getCurrentUser(): User | null {
     return this.currentUserSubject.value;

@@ -15,7 +15,7 @@ import { Competiciones } from './pages/competiciones/competiciones';
 
 export const routes: Routes = [
   { path: '', component: Homepage },
-  { path: 'login', component: LoginComponent },   
+  { path: 'login', component: LoginComponent },
   { path: 'arbitros', component: Arbitros, canActivate: [RoleGuard], data: { roles: ['admin', 'arbitro'] } },
   { path: 'equipos', component: Equipos, canActivate: [RoleGuard], data: { roles: ['admin', 'jugador'] } },
   { path: 'jugadores', component: Jugadores, canActivate: [RoleGuard], data: { roles: ['admin', 'jugador'] } },
@@ -24,6 +24,6 @@ export const routes: Routes = [
   { path: 'contacto', component: Contacto, canActivate: [RoleGuard], data: { roles: ['admin', 'jugador', 'arbitro'] } },
   { path: 'competiciones', component: Competiciones, canActivate: [RoleGuard], data: { roles: ['admin'] } },
   { path: 'registro', component: Registro },
-  { path: '**', redirectTo: '' }, 
+  { path: '**', redirectTo: '' },
 
 ];

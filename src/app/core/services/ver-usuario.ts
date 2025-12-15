@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import {IUser} from '../models/user.model';
 
 
-  
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,5 +18,8 @@ export class userService  {
 
   getUsersByRole(rol: string): Observable<IUser[]> {
     return this.http.get<IUser[]>(`${this.apiUrl}?rol=${rol}`);
+  }
+  getUsuarioName(name: Object): Observable<IUser> {
+    return this.http.get<IUser>(`${this.apiUrl}/${name}`);
   }
 }

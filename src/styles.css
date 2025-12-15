@@ -7,7 +7,7 @@
 :root {
   --bs-body-font-family: 'Roboto', sans-serif;
   --bs-body-font-weight: 400;
-  --maestre-color: royalblue; /* Color personalizado */
+  --maestre-color: rgb(61, 98, 207); /* Color personalizado */
 }
 
 /* Estilos personalizados */

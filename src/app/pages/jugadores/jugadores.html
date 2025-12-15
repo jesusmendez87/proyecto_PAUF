@@ -1,1 +1,11 @@
-<p>jugadores works!</p>
+<div class="container">
+  <div class="row">
+<div class="card col-lg-2 col-md-6 col-sm-12" *ngFor="let a of actas">
+<h5 class="card-title">{{a.jugador}}</h5>
+    <p class="card-text"><strong>Tiempo:</strong> {{ a.minuto}}</p>
+    <p class="card-text"><strong>Anotación:</strong> {{ a.tipo }}</p>
+  </div>
+</div>
+</div>
+
+

@@ -1,13 +1,16 @@
 <div *ngIf="loading" class="alert alert-info">Cargando datos...</div>
 
 <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-
-<div *ngIf="partido && !loading" class="card">
+<div class="container">
+<div class="row">
+<div class="card col-md-12 col-sm-6 col-lg-3" *ngFor="let a of partido">
   <div class="card-body">
     <h5 class="card-title">Partido</h5>
-    <p><strong>Árbitro:</strong> {{ partido.arbitro_id}}</p>
-    <p><strong>Resultado Local:</strong> {{ partido.local_id }}</p>
-    <p><strong>Visitante ID:</strong> {{ partido.visitante_id }}</p>
-    <p><strong>Deporte:</strong> {{ partido.deporte }}</p>
+    <p class="card-text"><strong>Árbitro:</strong> {{ a.arbitro_id}}</p>
+    <p class="card-text"><strong>Equipo Local:</strong> {{ a.local_id }}</p>
+    <p class="card-text"><strong>Equipo Visitante:</strong> {{ a.visitante_id }}</p>
+    <p class="card-text"><strong>Deporte:</strong> {{ a.deporte }}</p>
   </div>
+</div>
+</div>
 </div>

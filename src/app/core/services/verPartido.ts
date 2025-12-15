@@ -6,13 +6,16 @@ import { Observable, BehaviorSubject, map } from 'rxjs';
 
 
 export interface partido {
- 
   arbitro_id: string;
   deporte: string;
   local_id: string;
   visitante_id: string;
 }
-
+ export interface IActaEvento {
+  jugador: string;   // nombre del jugador
+  minuto: number;    // minuto del evento
+  tipo: 'gol' | 'amarilla' | 'roja' | 'cambio' | string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -27,9 +30,24 @@ export class VerPartido {
       map(partidos => partidos[0])
     );
   }
-  
-  getPartidos(): Observable<Ipartido[]> {
-    return this.http.get<Ipartido[]>(this.apiUrl);
+
+
+  getActas(): Observable<Ipartido> {
+     const token = localStorage.getItem('token');
+  return this.http.get<Ipartido[]>(this.apiUrl, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }).pipe(
+    map(partidos => partidos[0])
+  );
   }
 
+
+  getPartidos(): Observable<Ipartido[]> {
+const token = localStorage.getItem('token'); // JWT
+  return this.http.get<Ipartido[]>(this.apiUrl, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+}
 }

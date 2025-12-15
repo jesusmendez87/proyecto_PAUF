@@ -25,7 +25,7 @@ import { IUser } from '../../core/models/user.model';
 
 
 export class Competiciones {
-  local_id: string = '';  
+  local_id: string = '';
   visitante_id: string = '';
   arbitro_id: string = '';
   lugar: string = '';
@@ -36,7 +36,7 @@ export class Competiciones {
   equipo: Iequipo[] = [];
   arbitros: IUser[] = [];
 
- 
+
 
 
   loading: boolean = false;
@@ -70,11 +70,11 @@ this.userService.getUsersByRole('arbitro').subscribe({
       }
     });
   }
-      
-   
-   
- 
-  
+
+
+
+
+
 
   cargarEquipos() {
     this.verEquipo.getEquipos().subscribe({
@@ -92,8 +92,8 @@ this.userService.getUsersByRole('arbitro').subscribe({
     if (!this.local_id || !this.visitante_id || !this.arbitro_id || !this.lugar || !this.fecha || !this.deporte) {
       this.errorMessage = 'Rellena todos los campos';
       return;
-    } 
- 
+    }
+
 
     this.loading = true;
     this.errorMessage = null;
@@ -101,7 +101,7 @@ this.userService.getUsersByRole('arbitro').subscribe({
 
 
 
-    this.registerService.nuevoPartido(this.local_id, this.visitante_id, this.arbitro_id, this.lugar, this.fecha,this.deporte).subscribe({
+    this.registerService.nuevoPartido(this.local_id, this.visitante_id, this.arbitro_id, this.lugar ,this.fecha, this.deporte).subscribe({
       next: (res) => {
         this.successMessage = res?.message || 'Partido creado exitosamente';
         this.loading = false;
