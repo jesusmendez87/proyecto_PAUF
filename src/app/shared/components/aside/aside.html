@@ -1,32 +1,36 @@
- <div class="row">
-            <div>
-                <aside>
-                    <div class="list-group pt-5">
-                        <a href="#" class="list-group-item list-group-item-action active fs-5 fs-sm-6 bg-dark"
-                            aria-current="true"> Noticias</a>
-                <a class="list-group-item list-group-item-action fs-5 fs-sm-6"
-   *hasRole="'admin'"
-   routerLink="/competiciones">
-   Competiciones
-</a>
+<div class="row">
+    <div>
+        <aside>
+            <div class="list-group pt-5">
+                <a href="#" class="list-group-item list-group-item-action active fs-5 fs-sm-6 bg-dark"
+                    aria-current="true"> Noticias</a>
+                <a class="list-group-item list-group-item-action fs-5 fs-sm-6" *hasRole="'admin'"
+                    routerLink="/competiciones">
+                    Crear Partido
+                </a>
+
+                       <a class="list-group-item list-group-item-action fs-5 fs-sm-6" *hasRole="'admin'"
+                    routerLink="/delete">
+                    Administración
+                </a>
 
 
-                   <a href="#" class="list-group-item list-group-item-action fs-5 fs-sm-6">Inscripciones</a>
 
-                        <a href="#"
-                            class="list-group-item list-group-item-action dropdown-toggle fs-5 fs-sm-6 text-wrap"
-                            data-bs-toggle="dropdown">Resultado años anteriores</a>
+                <a class="list-group-item list-group-item-action fs-5 fs-sm-6" routerLink="registro">Inscripcion Jugador</a>
 
-
-                        <ul class="dropdown-menu">
-
-                            <li><a class="dropdown-item fs-5 fs-sm-6" href="#">2024/25</a></li>
-                            <li><a class="dropdown-item fs-5 fs-sm-6" href="#">2023/24</a></li>
-                            <li><a class="dropdown-item fs-5 fs-sm-6" href="#">2023/22</a></li>
-                        </ul>
-
-                    </div>
+                <a href="#" class="list-group-item list-group-item-action dropdown-toggle fs-5 fs-sm-6 text-wrap"
+                    data-bs-toggle="dropdown">Resultado años anteriores</a>
 
 
-                </aside>
+                <ul class="dropdown-menu">
+
+                    <li><a class="dropdown-item fs-5 fs-sm-6" href="#">2024/25</a></li>
+                    <li><a class="dropdown-item fs-5 fs-sm-6" href="#">2023/24</a></li>
+                    <li><a class="dropdown-item fs-5 fs-sm-6" href="#">2023/22</a></li>
+                </ul>
+
             </div>
+
+
+        </aside>
+    </div>

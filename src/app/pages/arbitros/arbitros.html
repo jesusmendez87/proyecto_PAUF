@@ -1,10 +1,14 @@
-<p>Listado de Arbitros Inscritos</p>
-<div class="card" *ngFor="let a of iuser">
+
+ <div class="container">
+<div class="row">
+    
+<div class="card col-lg-3 col-md-5 col-sm-12 m-3 bg-light"  *ngFor="let a of iuser">
+<img src = "/assets/img/person.jpg" class="card-img-top img-thubnails" alt="árbitro pictograma">
 <div class="card-body">
-<div class="card-title"> Nombre Artibro:</div>
+ <div class="card-title"> Nombre Artibro:</div>
 <div class="card-text">{{a.name }}</div>
 
-
 </div>
-
+</div>
+</div>
 </div>

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+// servicio para registrar usuarios
 export class Register {
   private apiUrl = 'http://localhost:3000/api/register';
 

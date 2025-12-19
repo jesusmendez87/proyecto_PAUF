@@ -24,7 +24,7 @@ const equipoSchema = new mongoose.Schema({
   ciy: { type: String, required: true },
   category: { type: String, required: true },
   players: [playersSchema],
-  deporte: { type: String, required: true }
+  sport: { type: String, required: true }
 
 });
 

@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 
 const actaSchema = new mongoose.Schema({
+
     jugador: { type:String},
     minuto: { type: Number },
     tipo: {
@@ -13,6 +14,7 @@ const actaSchema = new mongoose.Schema({
 
 
 const partidoSchema = new mongoose.Schema({
+  _id: {type:String},
   local_id: {
      type: mongoose.Schema.Types.ObjectId,
      ref: 'Equipo',
@@ -29,9 +31,9 @@ const partidoSchema = new mongoose.Schema({
     required: true },
 
   resultado: {
-        local_score: { type: Number },
-        visitante_score: { type: Number},
-        },
+    local_score: { type: Number },
+    visitante_score: { type: Number }
+  },
 
   acta: [actaSchema],
 

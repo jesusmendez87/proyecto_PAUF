@@ -9,5 +9,5 @@ export interface Iequipo {
     position: string;
     number: number;
   }>;
-  deporte: string;
+  sport: string;
 }

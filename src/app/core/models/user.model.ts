@@ -1,8 +1,9 @@
 export interface IUser {
   _id: string;
-  name: string;
   username: string;
-  rol: string;
+  password: string;
+  name: string;
+ rol: string;
 }
 
 export class IUser implements IUser {

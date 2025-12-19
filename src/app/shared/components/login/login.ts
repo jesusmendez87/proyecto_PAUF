@@ -9,10 +9,7 @@ import {RouterLink} from '@angular/router';
 @Component({  
   selector: 'app-login',
   standalone: true,
- 
   imports: [FormsModule, CommonModule, RouterLink],
-
-
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
 })
@@ -41,12 +38,12 @@ export class LoginComponent {
     next: (res) => {
       console.log('Login exitoso', res);
       this.successMessage = res?.message || 'Login exitoso';
-      // set current user in service so guard and other components can read it
+     
       if (res && res.user) {
         this.authService.setCurrentUser(res.user);
       }
       this.loading = false;
-      // navigate after successful login
+    
       setTimeout(() => this.router.navigate(['/']), 500);
     },
     error: (err) => {

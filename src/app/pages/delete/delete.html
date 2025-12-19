@@ -1,0 +1,67 @@
+<div class="register-container bg-light">
+
+
+  <label>Jugadores:</label>
+  <select title="jugadores" class="form-select"
+          [(ngModel)]="jugadorId">
+    <option value="" disabled>-- Eliminar Jugador --</option>
+    <option *ngFor="let j of jugadores" [value]="j._id">
+      {{ j.name }}
+    </option>
+  </select>
+
+  <button class="btn btn-danger mt-2"
+          [disabled]="!jugadorId"
+          (click)="eliminarUsuario(jugadorId)">
+    Eliminar jugador
+  </button>
+
+  <label>Árbitros:</label>
+  <select title="arbitros" class="form-select"
+          [(ngModel)]="arbitroId">
+    <option value="" disabled>-- Eliminar Árbitro --</option>
+    <option *ngFor="let a of arbitros" [value]="a._id">
+      {{ a.name }}
+    </option>
+  </select>
+
+  <button class="btn btn-danger mt-2"
+          [disabled]="!arbitroId"
+          (click)="eliminarUsuario(arbitroId)">
+    Eliminar árbitro
+  </button>
+
+
+   <label>Equipo:</label>
+  <select title="equipos" class="form-select"
+          [(ngModel)]="equipoId">
+    <option value="" disabled>-- Eliminar Equipo --</option>
+    <option *ngFor="let e of equipos" [value]="e._id">
+      {{ e.name }}
+    </option>
+  </select>
+
+  <button class="btn btn-danger mt-2"
+          [disabled]="!equipoId"
+          (click)="eliminarEquipo(equipoId)">
+    Eliminar Equipo
+  </button>
+
+     <label>Partido:</label>
+  <select title="partido" class="form-select"
+          [(ngModel)]="partidoId">
+    <option value="" disabled>-- Eliminar Equipo --</option>
+    <option *ngFor="let p of partidos" [value]="p._id">
+      {{ p._id }}
+    </option>
+  </select>
+
+  <button class="btn btn-danger mt-2"
+          [disabled]="!partidoId"
+          (click)="eliminarPartidos(partidoId)">
+    Eliminar Partido
+  </button>
+
+  
+</div>
+

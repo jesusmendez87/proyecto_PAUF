@@ -3,12 +3,13 @@
 <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
 <div class="container">
 <div class="row">
-<div class="card col-md-12 col-sm-6 col-lg-3" *ngFor="let a of partido">
+<div class="card col-md-12 col-sm-6 col-lg-3 m-1 bg-light" *ngFor="let a of partido">
   <div class="card-body">
     <h5 class="card-title">Partido</h5>
     <p class="card-text"><strong>Árbitro:</strong> {{ a.arbitro_id}}</p>
     <p class="card-text"><strong>Equipo Local:</strong> {{ a.local_id }}</p>
     <p class="card-text"><strong>Equipo Visitante:</strong> {{ a.visitante_id }}</p>
+     <p class="card-text"><strong>Resultado:</strong> {{a.resultado.local_score}} - {{a.resultado.visitante_score}} </p>
     <p class="card-text"><strong>Deporte:</strong> {{ a.deporte }}</p>
   </div>
 </div>

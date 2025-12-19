@@ -1,26 +1,34 @@
+ 
+<ul class="nav nav-tabs justify-content-center h5">
 
- <ul class="nav nav-tabs justify-content-center h5">
+  <li class="nav-item "><a class="nav-link" routerLink="/"><img
+        src="https://iesmaestredecalatrava.es/wp-content/uploads/logotipo-ies-maestredecalatrava-1.png" width="40%"
+        height="40%" class="w-100" alt="logo"></a></li>
 
-        <li class="nav-item"><a class="nav-link" routerLink="/"><img
-                    src="https://iesmaestredecalatrava.es/wp-content/uploads/logotipo-ies-maestredecalatrava-1.png"
-                    width="40%" height="40%" class="w-100" alt="logo"></a></li>
+  <li class="nav-item mt-5" *hasRole="['admin', 'jugador', 'arbitro']"><a class="nav-link link-light"
+      routerLink="/equipos">Equipos</a></li>
+  <li class="nav-item mt-5" *hasRole="['admin', 'jugador', 'arbitro']"><a class="nav-link link-light"
+      routerLink="/clasificaciones">Resultados</a></li>
+  <li class="nav-item mt-5" *hasRole="['admin', 'arbitro']"><a class="nav-link link-light"
+      routerLink="/arbitros">Arbitros</a></li>
+  <li class="nav-item mt-5" *hasRole="['admin', 'jugador']"><a class="nav-link link-light"
+      routerLink="/jugadores">Jugadores</a></li>
+  <li class="nav-item mt-5" *hasRole="['admin', 'jugador', 'arbitro']"><a class="nav-link link-light"
+      routerLink="/noticias">Noticias</a></li>
+  <li class="nav-item mt-5" *hasRole="['admin', 'jugador', 'arbitro']"><a class="nav-link link-light"
+      routerLink="/contacto">Contacto</a></li>
 
-        <li class="nav-item mt-5" *hasRole="['admin', 'jugador', 'arbitro']"><a class="nav-link link-light" routerLink="/equipos">Equipos</a></li>
-        <li class="nav-item mt-5" *hasRole="['admin', 'jugador', 'arbitro']"><a class="nav-link link-light" routerLink="/clasificaciones">Resultados</a></li>
-        <li class="nav-item mt-5" *hasRole="['admin', 'arbitro']"><a class="nav-link link-light" routerLink="/arbitros">Arbitros</a></li>
-        <li class="nav-item mt-5" *hasRole="['admin', 'jugador', 'arbitro']"><a class="nav-link link-light" routerLink="/jugadores">Jugadores</a></li>
-        <li class="nav-item mt-5" *hasRole="['admin', 'jugador', 'arbitro']"><a class="nav-link link-light" routerLink="/noticias">Noticias</a></li>
-        <li class="nav-item mt-5" *hasRole="['admin', 'jugador', 'arbitro']"><a class="nav-link link-light" routerLink="/contacto">Contacto</a></li>
+  <!-- cambiamos el icono según esado de login-->
+  <li class="nav-item mt-5 mx-5" *ngIf="!authService.isLoggedIn()">
+    <a class="nav-link link-light" routerLink="/login">
+      <h1> <i class="bi bi-person"></i> </h1>
+    </a>
+  </li>
 
-
-        <li class="nav-item mt-5 mx-5" *ngIf="!authService.isLoggedIn()">
-          <a class="nav-link link-light" routerLink="/login"><h1> <i class="bi bi-person"></i> </h1></a>
-        </li>
-
-
-        <li class="nav-item mt-5 mx-5" *ngIf="authService.isLoggedIn()">
-          <button class="btn btn-link nav-link link-light" (click)="logout()" title="Cerrar sesión">
-            <h1> <i class="bi bi-person-fill"></i> </h1>
-          </button>
-        </li>
-    </ul>
+  <li class="nav-item mt-5 mx-5" *ngIf="authService.isLoggedIn()">
+    <button class="btn btn-link nav-link link-light" (click)="logout()" title="Cerrar sesión">
+      <h1> <i class="bi bi-person-fill"></i> </h1>
+    </button>
+  </li>
+</ul>
+ 

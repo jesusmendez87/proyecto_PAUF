@@ -19,7 +19,7 @@
         <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
     </div>
 
-    <button (click)="register()" [disabled]="loading || !username || !password || !confirmPassword || !rol">
+    <button class="btn btn-primary mt-5" (click)="register()" aria-label="Registrarse" [disabled]="loading || !username || !password || !confirmPassword || !rol">
         <span *ngIf="!loading">Registrarse</span>                   
 
         <span *ngIf="loading">Registrando...</span>

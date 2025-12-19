@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HasRoleDirective } from "../../../core/services/role.guard";
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-aside',

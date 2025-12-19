@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../core/services/auth';
 import { CommonModule } from '@angular/common';
-import { partido, VerPartido } from '../../core/services/verPartido';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NuevoPartido } from '../../core/services/nuevo-partido';
-import { Equipos } from '../equipos/equipos';
-import { VerEquipo } from   '../../core/services/verEquipo';
-import { Iequipo } from     '../../core/models/equipos.model';
+import { VerEquipo } from '../../core/services/verEquipo';
+import { Iequipo } from '../../core/models/equipos.model';
 import { userService } from '../../core/services/ver-usuario';
 import { IUser } from '../../core/models/user.model';
 
@@ -18,7 +15,7 @@ import { IUser } from '../../core/models/user.model';
 @Component({
   selector: 'app-competiciones',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterLink, Equipos],
+  imports: [FormsModule, CommonModule],
   templateUrl: './competiciones.html',
   styleUrl: './competiciones.css',
 })
@@ -45,26 +42,26 @@ export class Competiciones {
 
 
 
-constructor(
-  private registerService: NuevoPartido,
-  private userService: userService,
-  private verEquipo: VerEquipo,
-  private router: Router
-) {}
+  constructor(
+    private registerService: NuevoPartido,
+    private userService: userService,
+    private verEquipo: VerEquipo,
+    private router: Router
+  ) { }
 
-
- ngOnInit() {
+  //necesitamos cargar todos los arbitros y los equipos registrados para utilizarlos en los select
+  ngOnInit() {
     this.cargarEquipos();
     this.cargarArbitros();
   }
 
 
-cargarArbitros() {
-this.userService.getUsersByRole('arbitro').subscribe({
+  cargarArbitros() {
+    this.userService.getUsersByRole('arbitro').subscribe({  //hacemos get sólo de arbitros
       next: (res) => {
         this.arbitros = res;
         console.log("Arbitros cargados:", this.arbitros);
-         },
+      },
       error: (err) => {
         console.error("Error cargando arbitro:", err);
       }
@@ -72,12 +69,8 @@ this.userService.getUsersByRole('arbitro').subscribe({
   }
 
 
-
-
-
-
   cargarEquipos() {
-    this.verEquipo.getEquipos().subscribe({
+    this.verEquipo.getEquipos().subscribe({ // hacemos get de todos los equípos
       next: (res) => {
         this.equipo = res;
         console.log("Equipos cargados:", this.equipo);
@@ -88,7 +81,7 @@ this.userService.getUsersByRole('arbitro').subscribe({
     });
   }
 
-   nuevoPartido() {
+  nuevoPartido() {
     if (!this.local_id || !this.visitante_id || !this.arbitro_id || !this.lugar || !this.fecha || !this.deporte) {
       this.errorMessage = 'Rellena todos los campos';
       return;
@@ -101,7 +94,7 @@ this.userService.getUsersByRole('arbitro').subscribe({
 
 
 
-    this.registerService.nuevoPartido(this.local_id, this.visitante_id, this.arbitro_id, this.lugar ,this.fecha, this.deporte).subscribe({
+    this.registerService.nuevoPartido(this.local_id, this.visitante_id, this.arbitro_id, this.lugar, this.fecha, this.deporte).subscribe({
       next: (res) => {
         this.successMessage = res?.message || 'Partido creado exitosamente';
         this.loading = false;
@@ -112,5 +105,5 @@ this.userService.getUsersByRole('arbitro').subscribe({
         this.loading = false;
       }
     });
-            }
+  }
 }

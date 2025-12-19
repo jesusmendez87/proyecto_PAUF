@@ -11,6 +11,8 @@ import emailjs from '@emailjs/browser';
 })
 export class Contacto {
 
+//utilizamos la api de emailjs
+
   enviar(form: HTMLFormElement) {
 
     emailjs.init('Tial4wMcE-CujZdA3');

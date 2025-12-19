@@ -1,4 +1,3 @@
-import { IF_EXISTS } from './../../../../node_modules/lmdb/index.d';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';

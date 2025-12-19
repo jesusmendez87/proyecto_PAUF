@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-<div class="mt-2 col-lg-3" *ngFor="let a of equipos">
-<div class="card">
+<div class="card col-lg-3 bg-light m-1" *ngFor="let a of equipos">
+ 
   <div class="card-body" >
 <div class="card-title"><strong>Equipo</strong></div>
 <div class="card-text"> Nombre:{{a.name}}</div>
 <div class="card-text"> ficha:{{a._id}}</div>
 <div class="card-text">Ciudad: {{a.city}}</div>
 <div class="card-text">Categoría: {{a.category}}</div>
-<div class="card-text"> Deporte:{{a.deporte}}</div>
+<div class="card-text"> Deporte:{{a.sport}}</div>
 </div>
 
 </div>

@@ -1,15 +1,18 @@
 
 import { Component } from '@angular/core';
 import { Noticias } from './../../shared/components/noticias/noticias';
-import { Shared } from './../../shared/shared';
+import { Aside } from "../../shared/components/aside/aside";
+ import { HasRoleDirective } from '../../shared/directives';
+ import { RouterLink } from '@angular/router';
+ 
 
 @Component({
   selector: 'app-homepage',
-  imports: [Noticias, Shared],
-  standalone: true,
+ standalone: true,
+  imports: [Noticias, Aside,RouterLink],
   templateUrl: './homepage.html',
   styleUrl: './homepage.css',
 })
 export class Homepage {
-
+ 
 }

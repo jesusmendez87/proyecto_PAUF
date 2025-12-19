@@ -22,9 +22,10 @@ mongoose
 // Ruta de login
 app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
+  //busca en la coleccion de usuarios a través de Usuario
   const user = await Usuario.findOne({ username, password });
   if (!user) return res.status(401).json({ msg: 'Credenciales inválidas' });
-
+// creamos un tocken de registro para la sesisón
   const token = jwt.sign({ _id: user._id, rol: user.rol }, process.env.JWT_SECRET, {
     expiresIn: '1h',
   });
@@ -49,7 +50,7 @@ app.post('/api/register', async (req, res) => {
     await newUser.save();
 
     console.log('Usuario registrado:', username);
-    res.json({ message: 'Registro exitoso', user: { username, name, rol } });
+    res.json({ message: 'Registro exitoso', user: { username,password, name, rol } });
   } catch (error) {
     console.error('Error al registrar usuario:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
@@ -66,7 +67,7 @@ export const auth = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = { id: decoded.id, role: decoded.rol }; // igual que tu AuthService
+    req.user = { id: decoded.id, role: decoded.rol };
     next();
   } catch (err) {
     return res.status(401).json({ msg: 'Token inválido' });
@@ -75,23 +76,23 @@ export const auth = (req, res, next) => {
 
 import { authMiddleware } from './src/app/middlewares/auth.middleware.js';
 
-app.get('/api/partidos', authMiddleware, async (req, res) => {
+app.get('/api/partidos', authMiddleware, async (req, res) => {  //utilizamos authMiddleware para validazión de tocken
   try {
     const userId = new mongoose.Types.ObjectId(req.user.id);
-    const rol = req.user.rol; // ✅ Aquí guardas el rol
-    // ADMIN → ve todo
+    const rol = req.user.rol; // Aquí guarda el rol
+    // ADMIN: ve tods los partidos
     if (rol === 'admin') {
       const partidos = await Partido.find();
       return res.json(partidos);
     }
 
-    // ARBITRO → solo donde arbitra
+    // ARBITRO: solo donde arbitra
     if (rol === 'arbitro') {
       const partidos = await Partido.find({ arbitro_id: userId });
       return res.json(partidos);
     }
 
-    // JUGADOR → equipos donde pertenece
+    // JUGADOR: equipos donde pertenece
     const partidos = await Partido.aggregate([
       {
         $lookup: {
@@ -155,25 +156,68 @@ app.get('/api/equipos', async (req, res) => {
     console.error('Error al obtener los equipos:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
-  });
-  //ver usuarios
+});
 
-  app.get('/api/usuarios', async (req, res) => {
-    try {
-      const { rol } = req.query;
+//ver usuarios
+app.get('/api/usuarios', async (req, res) => {
+  try {
+    const { rol } = req.query;
 
-      let filtro = {};
-      if (rol) filtro.rol = rol;
+    let filtro = {};
+    if (rol) filtro.rol = rol;
 
-      const usuarios = await Usuario.find(filtro).select('_id name rol'); //  SOLO devuelve id y name
+    const usuarios = await Usuario.find(filtro).select('_id name rol'); //  SOLO devuelve id y name
 
-      res.json(usuarios);
-    } catch (error) {
-      console.error('Error listando usuarios:', error);
-      res.status(500).json({ message: 'Error del servidor' });
+    res.json(usuarios);
+  } catch (error) {
+    console.error('Error listando usuarios:', error);
+    res.status(500).json({ message: 'Error del servidor' });
+  }
+
+
+// elimina usuario, partidos y equipos
+app.delete("/api/delete/:type/:id", async (req, res) =>  {  
+ const { type, id } = req.params;
+
+  try {
+    let result;
+
+    switch (type) {
+      case "usuarios":
+        result = await Usuario.findByIdAndDelete(id);
+        break;
+
+      case "partidos":
+        result = await Partido.findByIdAndDelete(id);
+        break;
+
+      case "equipos":
+        result = await Equipo.findByIdAndDelete(id);
+        break;
+
+      default:
+        return res.status(400).json({ message: "Tipo no válido" });
     }
 
+    if (!result) {
+      return res.status(404).json({ message: "Elemento no encontrado" });
+    }
+
+    res.json({
+      message: `${type.slice(0, -1)} eliminado correctamente`,
+      id
+    });
+
+  } catch (error) {
+    console.error("Error eliminando:", error);
+    res.status(500).json({ message: "Error del servidor" });
+  }
 });
+
+
+
+});
+
 // Puerto
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));

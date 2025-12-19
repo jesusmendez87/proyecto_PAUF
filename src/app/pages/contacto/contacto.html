@@ -1,16 +1,16 @@
-<head>
-<link rel="stylesheet" href="./contacto.css">
-</head>
-
-<form class="container" #f="ngForm" (ngSubmit)="f.valid && enviar($event.target)">
-
-  <input name="name" placeholder="Nombre">
-
-  <input type="email" name="email"  ngModel required  placeholder="Email">
-
-  <textarea name="message" placeholder="Mensaje"></textarea>
-
-  <button type="submit">Enviar</button>
+ 
+ 
+<form class="container form-label text-center mt-5" #f="ngForm" (ngSubmit)="f.valid && enviar($event.target)">
+<div class="input-group mb-3">
+  <input class="text" size="40" placeholder="Nombre">
+</div>
+<div class="input-group mb-3">
+  <input type="email" size="40" name="email"  ngModel required  placeholder="Email">
+  </div>  
+<div class="input-group">
+<textarea class="form-control" namee="mensaje" aria-label="Mensaje..."></textarea>
+</div>
+  <button class="btn btn-primary mt-5" type="submit">Enviar</button>
 
 </form>
 

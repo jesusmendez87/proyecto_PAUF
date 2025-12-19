@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Iequipo } from '../../core/models/equipos.model';
 import { VerEquipo } from '../../core/services/verEquipo';
@@ -14,11 +12,11 @@ import { VerEquipo } from '../../core/services/verEquipo';
 export class Equipos {
   equipos: Iequipo[] = [];
 
-  constructor(private verEquipo: VerEquipo, private router: Router) {
+  constructor(private verEquipo: VerEquipo) {
     this.loadEquipos();
   }
-
-loadEquipos() {
+  // cargamos todos los equipos disponibles desde el servicio
+  loadEquipos() {
     this.verEquipo.getEquipos().subscribe({
       next: (data) => {
         this.equipos = data;
@@ -27,9 +25,6 @@ loadEquipos() {
         console.error('Error al cargar los equipos:', err);
       }
     });
-  }
-  goToEquipoDetails(equipo: Iequipo) {
-    this.router.navigate(['/equipo-detalles', equipo.name]);
   }
 
 }

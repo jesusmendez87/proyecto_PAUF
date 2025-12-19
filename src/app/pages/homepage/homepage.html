@@ -1,11 +1,14 @@
 <section>
-  <div class="hero">
-    <h1 class="display-4 fw-bold">La emoción del deporte en IES MAESTRE DE CVA</h1>
 
-    <a class="btn btn-success" data-bs-toggle="collapse" href="#competicionesCollapse" role="button"
-      aria-expanded="false" aria-controls="competicionesCollapse">
-      Ver competiciones
-    </a>
+  <!--hero-->
+  <section class="hero text-center">
+  <div class="container">
+    <h1 class="display-5 fw-bold">La emoción del deporte en el IES Maestre de Cva</h1>
+    <p class="lead">Compite, aprende y disfruta del deporte</p>
+    <a href="#competicionesCollapse" class="btn btn-success btn-lg mt-3" data-bs-toggle="collapse" aria-controls="competicionesCollapse">Ver competiciones</a>
+  </div>
+</section>
+
     <div class="collapse" id="competicionesCollapse">
       <div class="card card-body">
         <div class="table-responsive">
@@ -18,7 +21,7 @@
             </thead>
             <tbody>
               <tr class="">
-                <td scope="row"> <a href="#" class="link-dark">Baloncesto</a></td>
+                <td scope="row"> <a href="#" class="link-dark">Futbol</a></td>
 
               </tr>
               <tr class="">
@@ -31,63 +34,51 @@
 
       </div>
     </div>
+
+
+ <div class="row">
+  <app-aside class="col-md-4 col-lg-3 col-xs-1 mx-4"></app-aside>
+  <app-noticias  class="col-md-8 col-lg-39 col-xs-11"></app-noticias>
+</div>
+ 
+
+<!-- COMPETICIONES -->
+<section id="competencias" class="container my-5">
+  <h2 class="mb-4 text-center">Competiciones</h2>
+  <div class="row g-4 text-center">
+
+    <div class="col-md-3">
+      <div class="card card-hover p-3">
+        <i class="bi bi-dribbble fs-1 text-primary"></i>
+        <h5 class="mt-2">Baloncesto</h5>
+      </div>
+    </div>
+     <!-- Fútbol (solo admin, jugador, árbitro) -->
+    <div class="col-md-3">
+      <div class="card card-hover p-3">
+
+      <a class="text-decoration-none" routerLink="/clasificaciones">
+        <i class="bi bi-trophy fs-1 text-primary"></i>
+        <h5 class="mt-2">Liga Fútbol</h5>
+        </a>
+      </div>
+
+    </div>
+    <div class="col-md-3">
+      <div class="card card-hover p-3">
+        <i class="bi bi-grid-3x3-gap fs-1 text-primary"></i>
+        <h5 class="mt-2">Ajedrez</h5>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card card-hover p-3">
+        <i class="bi bi-dice-3 fs-1 text-primary"></i>
+        <h5 class="mt-2">Pocker</h5>
+      </div>
+    </div>
   </div>
-
-  <app-noticias></app-noticias>
-
-  <!-- cards competiciones-->
-
-        <div class="col-md-12 mt-3">
-            <section id="competiciones" class="py-3">
-                <div class="container">
-                    <h2 class="mb-4 text-center">Competiciones</h2>
-                    <div class="row g-2">
-                        <!-- Card 1 -->
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card h-100 shadow-sm overflow-hidden">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Basketball_pictogram.svg"
-                                    class="card-img-top img-fluid transition" alt="liga baloncesto">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Baloncesto</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 2 -->
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card h-100 shadow-sm overflow-hidden">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Football_pictogram.svg"
-                                    class="card-img-top img-fluid transition" alt="Fútbol">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Fútbol</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 3 -->
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card h-100 shadow-sm overflow-hidden">
-                                <img src="https://i.etsystatic.com/34720162/r/il/a876a6/6607172610/il_1140xN.6607172610_9tjx.jpg"
-                                    class="card-img-top img-fluid transition" alt="ajedrez">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Ajedrez</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 4 -->
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card h-100 shadow-sm overflow-hidden">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Padel_tennis_pictogram.svg"
-                                    class="card-img-top img-fluid transition" alt="Padel">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Padel</h5>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-        </div>
+</section>
 
         <!-- Fin cards competiciones-->
-</section>
+ 
 
