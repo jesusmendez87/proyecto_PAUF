@@ -126,7 +126,7 @@ app.delete("/api/delete/:type/:id", async (req, res) => {
 });
 
 // Angular catch-all
-app.get('/:all(*)', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(angularDistPath, 'index.html'));
 });
 
