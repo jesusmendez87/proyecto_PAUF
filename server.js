@@ -126,8 +126,8 @@ app.delete("/api/delete/:type/:id", async (req, res) => {
 });
 
 // Angular catch-all
-app.get('/:all(*)', handler) => {
-  res.sendFile(path.join(angularDistPath, "index.html"));
+app.get('/:all(*)', (req, res) => {
+  res.sendFile(path.join(angularDistPath, 'index.html'));
 });
 
 // Conexión a MongoDB
