@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.json());
 
 // Angular build path
-const angularDistPath = path.join(__dirname, "dist", "my-app");
+const angularDistPath = path.join(__dirname, 'dist', 'my-app', 'browser');
 app.use(express.static(angularDistPath));
 
 // Rutas API
