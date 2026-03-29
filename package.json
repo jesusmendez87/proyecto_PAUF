@@ -5,8 +5,8 @@
     "ng": "ng",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "start": "ng serve",
-    "build": "ng build",
+   "build": "ng build && ng run my-app:server",
+   "start": "node dist/my-app/server/server.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:my-app": "node dist/my-app/server/server.mjs"
