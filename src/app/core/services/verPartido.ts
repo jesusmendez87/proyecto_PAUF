@@ -2,6 +2,7 @@ import { Ipartido } from '../models/partidos.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, map } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 //exportamos las interfaces para usarlas en los componentes
 export interface partido {
@@ -27,18 +28,18 @@ export interface IResultado {
 })
 
 export class VerPartido {
-    private apiUrl = 'http://localhost:3000/api/partidos';
+    private apiUrl = environment.apiUrl + '/partidos';
 
     constructor(private http: HttpClient) {}
 
- 
+
   getActas(): Observable<Ipartido[]> {
      const token = localStorage.getItem('token');
   return this.http.get<Ipartido[]>(this.apiUrl, {
     headers: {
       Authorization: `Bearer ${token}`}
     });
-  
+
   }
 
   getPartidos(): Observable<Ipartido[]> {

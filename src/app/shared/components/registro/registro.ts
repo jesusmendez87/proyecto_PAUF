@@ -2,19 +2,19 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Register } from '../../../core/register'; 
+import { Register } from '../../../core/services/register';
 
 
 @Component({
   selector: 'app-registro',
-  standalone: true, 
+  standalone: true,
   imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './registro.html',
   styleUrls: ['./registro.css'],
 })
 export class Registro {
 
-  username: string = '';  
+  username: string = '';
   password: string = '';
   name: string = '';
   confirmPassword: string = '';

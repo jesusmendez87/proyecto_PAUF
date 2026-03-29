@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
 import Usuario from './src/app/core/models/user.js';
 import Partido from './src/app/core/models/partidos.js';
 import Equipo from './src/app/core/models/equipos.js';
@@ -58,8 +59,6 @@ app.post('/api/register', async (req, res) => {
 });
 
 //ver partidos
-
-import jwt from 'jsonwebtoken';
 
 export const auth = (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
@@ -173,10 +172,10 @@ app.get('/api/usuarios', async (req, res) => {
     console.error('Error listando usuarios:', error);
     res.status(500).json({ message: 'Error del servidor' });
   }
-
+});
 
 // elimina usuario, partidos y equipos
-app.delete("/api/delete/:type/:id", async (req, res) =>  {  
+app.delete("/api/delete/:type/:id", async (req, res) =>  {
  const { type, id } = req.params;
 
   try {
@@ -214,14 +213,8 @@ app.delete("/api/delete/:type/:id", async (req, res) =>  {
   }
 });
 
-
-
-});
-
 const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
-  console.log(` app listening on port ${port}`)
-}
-
-);
+  console.log(`app listening on port ${port}`);
+});

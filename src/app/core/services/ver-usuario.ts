@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {IUser} from '../models/user.model';
+import { environment } from '../../../environments/environment';
 
 
 
@@ -12,7 +13,7 @@ import {IUser} from '../models/user.model';
 
 export class userService  {
 
-  private apiUrl = 'http://localhost:3000/api/usuarios';
+  private apiUrl = environment.apiUrl + '/usuarios';
 
   constructor(private http: HttpClient) {}
   //método para obtener rol de usuario
