@@ -5,8 +5,8 @@
     "ng": "ng",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-      "build": "ng build",
-  "start": "serve -s dist/my-app/browser -l $PORT",    
+    "build": "ng build",
+    "start": "serve -s dist/my-app/browser -l $PORT",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:my-app": "node dist/my-app/server/server.mjs"
@@ -21,7 +21,7 @@
           "parser": "angular"
         }
       }
-    ]
+    ] 
   },
   "private": true,
   "dependencies": {
@@ -40,6 +40,7 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.0.0",
     "rxjs": "~7.8.0",
+    "serve": "^14.2.6",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
