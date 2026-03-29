@@ -22,18 +22,53 @@ mongoose
 
 // Ruta de login
 app.post('/api/login', async (req, res) => {
-  const { username, password } = req.body;
-  //busca en la coleccion de usuarios a través de Usuario
-  const user = await Usuario.findOne({ username, password });
-  if (!user) return res.status(401).json({ msg: 'Credenciales inválidas' });
-// creamos un tocken de registro para la sesisón
-  const token = jwt.sign({ _id: user._id, rol: user.rol }, process.env.JWT_SECRET, {
-    expiresIn: '1h',
-  });
+  try {
+    const { username, password } = req.body;
 
-  res.json({ user: { _id: user._id, name: user.name, rol: user.rol }, token });
+    // 🔴 Validación básica
+    if (!username || !password) {
+      return res.status(400).json({ msg: 'Faltan username o password' });
+    }
+
+    // 🔍 Buscar usuario
+    const user = await Usuario.findOne({ username, password });
+
+    if (!user) {
+      return res.status(401).json({ msg: 'Credenciales inválidas' });
+    }
+
+    // 🔐 Comprobar SECRET
+    if (!process.env.JWT_SECRET) {
+      console.error('JWT_SECRET no definido');
+      return res.status(500).json({ msg: 'Error de configuración del servidor' });
+    }
+
+    // 🔑 Generar token
+    const token = jwt.sign(
+      { _id: user._id, rol: user.rol },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    // ✅ Respuesta SIEMPRE JSON
+    return res.json({
+      user: {
+        _id: user._id,
+        name: user.name,
+        rol: user.rol
+      },
+      token
+    });
+
+  } catch (error) {
+    console.error('ERROR EN LOGIN:', error);
+
+    // 🔥 MUY IMPORTANTE: devolver JSON siempre
+    return res.status(500).json({
+      msg: 'Error interno del servidor'
+    });
+  }
 });
-
 // Ruta de registro
 app.post('/api/register', async (req, res) => {
   const { username, password, name, rol } = req.body;
