@@ -256,6 +256,6 @@ app.listen(port, () => {
 
 app.use(express.static('dist/my-app/browser'));
 
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.resolve('dist/my-app/browser/index.html'));
 });
