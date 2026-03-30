@@ -34,19 +34,18 @@ export class AuthService {
 
 login(username: string, password: string): Observable<any> {
   return new Observable(observer => {
-    this.http.post<{ user: User, token: string }>(this.apiUrl, { username, password })
+    this.http.post(this.apiUrl, { username, password }, { responseType: 'text' })
       .subscribe({
         next: (res) => {
-          // Guardamos user y token
-          this.setCurrentUser(res.user, res.token);
-
-          // Actualizamos BehaviorSubject
-          this.currentUserSubject.next(res.user);
+          console.log('RESPUESTA CRUDA:', res); // 🔥 CLAVE
 
           observer.next(res);
           observer.complete();
         },
-        error: (err) => observer.error(err)
+        error: (err) => {
+          console.log('ERROR:', err);
+          observer.error(err);
+        }
       });
   });
 }
