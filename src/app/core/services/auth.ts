@@ -12,7 +12,7 @@ export interface User {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = environment.apiUrl + '/login';
+  private apiUrl = environment.apiUrl + /'api/login';
 
  private currentUserSubject = new BehaviorSubject<User | null>(
   (() => {
@@ -34,18 +34,19 @@ export class AuthService {
 
 login(username: string, password: string): Observable<any> {
   return new Observable(observer => {
-    this.http.post(this.apiUrl, { username, password }, { responseType: 'text' })
+    this.http.post<{ user: User, token: string }>(this.apiUrl, { username, password })
       .subscribe({
         next: (res) => {
-          console.log('RESPUESTA CRUDA:', res); // 🔥 CLAVE
+          // Guardamos user y token
+          this.setCurrentUser(res.user, res.token);
+
+          // Actualizamos BehaviorSubject
+          this.currentUserSubject.next(res.user);
 
           observer.next(res);
           observer.complete();
         },
-        error: (err) => {
-          console.log('ERROR:', err);
-          observer.error(err);
-        }
+        error: (err) => observer.error(err)
       });
   });
 }
