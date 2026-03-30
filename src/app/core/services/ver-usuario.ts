@@ -13,7 +13,7 @@ import { environment } from '../../../environments/environment';
 
 export class userService  {
 
-  private apiUrl = environment.apiUrl + '/usuarios';
+  private apiUrl = environment.apiUrl + '/api/usuarios';
 
   constructor(private http: HttpClient) {}
   //método para obtener rol de usuario

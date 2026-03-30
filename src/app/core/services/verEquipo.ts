@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root', })
 export class VerEquipo {
-    private apiUrl = environment.apiUrl + '/equipos';
+    private apiUrl = environment.apiUrl + '/api/equipos';
 
     constructor(private http: HttpClient) {}
 

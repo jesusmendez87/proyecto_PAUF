@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class NuevoPartido {
-  private apiUrl = environment.apiUrl + '/partido';
+  private apiUrl = environment.apiUrl + '/api/partido';
 
   constructor(private http: HttpClient) {}
   //método para crear nuevos partidos con los pámetros necesarios haciendo post a la bbdd

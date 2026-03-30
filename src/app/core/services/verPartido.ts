@@ -28,7 +28,7 @@ export interface IResultado {
 })
 
 export class VerPartido {
-    private apiUrl = environment.apiUrl + '/partidos';
+    private apiUrl = environment.apiUrl + '/api/partidos';
 
     constructor(private http: HttpClient) {}
 
