@@ -6,7 +6,7 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "build": "ng build",
-    "start": "serve -s dist/my-app/browser -l $PORT",
+    "start": "node server.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:my-app": "node dist/my-app/server/server.mjs"
