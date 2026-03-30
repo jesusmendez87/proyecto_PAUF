@@ -12,7 +12,7 @@ export interface User {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = environment.apiUrl + '/api/login';
+  private apiUrl = environment.apiUrl + '/api/login'; 
 
  private currentUserSubject = new BehaviorSubject<User | null>(
   (() => {
