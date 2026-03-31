@@ -18,7 +18,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: instalar dependencias
-      run: npm install, npm ci, npm install --legacy-peer-deps
+      run: npm ci, npm install --legacy-peer-deps
 
     - name: ejecutar pruebas
       run: |
