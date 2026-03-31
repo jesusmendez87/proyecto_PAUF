@@ -37,13 +37,12 @@ app.post('/api/login', async (req, res) => {
       return res.status(401).json({ msg: 'Credenciales inválidas' });
     }
 
-    // 🔐 Comprobar SECRET
-    if (!process.env.JWT_SECRET) {
+       if (!process.env.JWT_SECRET) {
       console.error('JWT_SECRET no definido');
       return res.status(500).json({ msg: 'Error de configuración del servidor' });
     }
 
-    // 🔑 Generar token
+   // generar token
     const token = jwt.sign(
       { _id: user._id, rol: user.rol },
       process.env.JWT_SECRET,
@@ -254,6 +253,7 @@ app.listen(port, () => {
   console.log(`app listening on port ${port}`);
 });
 
+// Servir Angular en producción
 app.use(express.static('dist/my-app/browser'));
 
 app.use((req, res) => {

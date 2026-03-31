@@ -1,0 +1,25 @@
+name: test angular
+
+on:
+  push:
+    branches: [ "render-7" ]
+  pull_request:
+    branches: [ "render-7" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: instalar dependencias
+      run: npm install, npm ci, npm install --legacy-peer-deps
+
+    - name: ejecutar pruebas
+      run: |
+        npm run test
